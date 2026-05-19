@@ -17,4 +17,3 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "keyring-kotlin"
-
