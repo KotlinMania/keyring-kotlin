@@ -209,7 +209,11 @@ kotlin {
         binaries.framework { baseName = "Keyring"; xcf.add(this) }
     }
     iosSimulatorArm64 {
-        binaries.framework { baseName = "Keyring"; xcf.add(this) }
+        binaries.framework {
+            baseName = "Keyring"
+            isStatic = true
+            xcf.add(this)
+        }
     }
     iosX64 {
         binaries.framework { baseName = "Keyring"; xcf.add(this) }
