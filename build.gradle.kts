@@ -282,7 +282,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.8.0")
-                implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.5.0")
                 // Upstream src/lib.rs and src/keyutils_persistent.rs use `log::debug`.
                 implementation("io.github.kotlinmania:log-kotlin:0.1.3")
             }
