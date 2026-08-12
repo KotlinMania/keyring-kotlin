@@ -10,11 +10,12 @@ class ErrorTest {
     fun testBadPassword() {
         // malformed sequences here taken from:
         // https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
-        val cases = listOf(
-            byteArrayOf(0x80.toByte()),
-            byteArrayOf(0xbf.toByte()),
-            byteArrayOf(0xed.toByte(), 0xa0.toByte(), 0xa0.toByte()),
-        )
+        val cases =
+            listOf(
+                byteArrayOf(0x80.toByte()),
+                byteArrayOf(0xbf.toByte()),
+                byteArrayOf(0xed.toByte(), 0xa0.toByte(), 0xa0.toByte()),
+            )
         for (bytes in cases) {
             val outcome = decodePassword(bytes.copyOf())
             outcome.fold(

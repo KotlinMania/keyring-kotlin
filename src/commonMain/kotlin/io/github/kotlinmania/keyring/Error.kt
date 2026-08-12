@@ -21,16 +21,18 @@ package io.github.kotlinmania.keyring
  * more values can be added to it without a SemVer break. Clients should
  * always have default handling for variants they don't understand.
  */
-sealed class Error(override val message: String, override val cause: Throwable? = null) :
-    RuntimeException(message, cause) {
-
+sealed class Error(
+    override val message: String,
+    override val cause: Throwable? = null,
+) : RuntimeException(message, cause) {
     /**
      * This indicates runtime failure in the underlying platform storage
      * system. The details of the failure can be retrieved from the attached
      * platform error.
      */
-    class PlatformFailure(val error: Throwable) :
-        Error("Platform secure storage failure: ${error.message}", error)
+    class PlatformFailure(
+        val error: Throwable,
+    ) : Error("Platform secure storage failure: ${error.message}", error)
 
     /**
      * This indicates that the underlying secure storage holding saved items
@@ -38,8 +40,9 @@ sealed class Error(override val message: String, override val cause: Throwable? 
      * platform; for example, it might be that the credential store is locked.
      * The underlying platform error will typically give the reason.
      */
-    class NoStorageAccess(val error: Throwable) :
-        Error("Couldn't access platform secure storage: ${error.message}", error)
+    class NoStorageAccess(
+        val error: Throwable,
+    ) : Error("Couldn't access platform secure storage: ${error.message}", error)
 
     /**
      * This indicates that there is no underlying credential entry in the
@@ -52,31 +55,38 @@ sealed class Error(override val message: String, override val cause: Throwable? 
      * The underlying bytes are available for examination in the attached
      * value.
      */
-    class BadEncoding(val bytes: ByteArray) : Error("Data is not UTF-8 encoded")
+    class BadEncoding(
+        val bytes: ByteArray,
+    ) : Error("Data is not UTF-8 encoded")
 
     /**
      * This indicates that one of the entry's credential attributes exceeded a
      * length limit in the underlying platform. The attached values give the
      * name of the attribute and the platform length limit that was exceeded.
      */
-    class TooLong(val name: String, val len: UInt) :
-        Error("Attribute '$name' is longer than platform limit of $len chars")
+    class TooLong(
+        val name: String,
+        val len: UInt,
+    ) : Error("Attribute '$name' is longer than platform limit of $len chars")
 
     /**
      * This indicates that one of the entry's required credential attributes
      * was invalid. The attached value gives the name of the attribute and the
      * reason it's invalid.
      */
-    class Invalid(val attr: String, val reason: String) :
-        Error("Attribute $attr is invalid: $reason")
+    class Invalid(
+        val attr: String,
+        val reason: String,
+    ) : Error("Attribute $attr is invalid: $reason")
 
     /**
      * This indicates that there is more than one credential found in the
      * store that matches the entry. Its value is a list of the matching
      * credentials.
      */
-    class Ambiguous(val items: List<Credential>) :
-        Error("Entry is matched by ${items.size} credentials: $items")
+    class Ambiguous(
+        val items: List<Credential>,
+    ) : Error("Entry is matched by ${items.size} credentials: $items")
 }
 
 /** A [kotlin.Result] specialized to fail with a keyring [Error]. */
