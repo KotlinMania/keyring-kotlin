@@ -1,4 +1,4 @@
-// port-lint: source src/error.rs
+// port-lint: tests error.rs
 package io.github.kotlinmania.keyring
 
 import kotlin.test.Test
