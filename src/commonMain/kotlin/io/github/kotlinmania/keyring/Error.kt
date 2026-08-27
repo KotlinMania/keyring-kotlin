@@ -1,4 +1,4 @@
-// port-lint: source src/error.rs
+// port-lint: source error.rs
 package io.github.kotlinmania.keyring
 
 /*
@@ -87,6 +87,16 @@ sealed class Error(
     class Ambiguous(
         val items: List<Credential>,
     ) : Error("Entry is matched by ${items.size} credentials: $items")
+
+    /**
+     * Formats the error into a human-readable display string.
+     */
+    fun fmt(): String = message
+
+    /**
+     * Returns the underlying cause error, if any.
+     */
+    fun source(): Throwable? = cause
 }
 
 /** A [kotlin.Result] specialized to fail with a keyring [Error]. */

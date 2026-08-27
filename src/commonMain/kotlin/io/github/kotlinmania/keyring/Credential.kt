@@ -1,4 +1,4 @@
-// port-lint: source src/credential.rs
+// port-lint: source credential.rs
 package io.github.kotlinmania.keyring
 
 /*
@@ -133,13 +133,18 @@ interface CredentialApi {
      * meaningful textual representation for their credential objects.
      */
     fun debugFmt(): String = asAny().toString()
+
+    /**
+     * Formats the credential for debug display.
+     */
+    fun fmt(): String = debugFmt()
 }
 
 /** A thread-safe implementation of the [CredentialApi]. */
 typealias Credential = CredentialApi
 
 /**
- * A descriptor for the lifetime of stored credentials, returned from a
+ * A descriptor for the persistence duration of stored credentials, returned from a
  * credential store's [CredentialBuilderApi.persistence] call.
  */
 enum class CredentialPersistence {
@@ -176,7 +181,7 @@ interface CredentialBuilderApi {
     fun asAny(): Any
 
     /**
-     * The lifetime of credentials produced by this builder.
+     * The persistence retention of credentials produced by this builder.
      *
      * A default implementation is provided for backward compatibility, since
      * this API was added in a minor release. The default assumes that
