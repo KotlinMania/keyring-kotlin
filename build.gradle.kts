@@ -262,13 +262,28 @@ kotlin {
     val xcf = XCFramework(frameworkName)
     val frameworkBundleId = projectNamespace
 
-    // Local helper: attach this target's framework to the XCFramework.
-    fun KotlinNativeTarget.addToXcf(static: Boolean = false) {
+    macosArm64 {
+        binaries.framework { baseName = "Keyring"; xcf.add(this) }
+    }
+    iosArm64 {
+        binaries.framework { baseName = "Keyring"; xcf.add(this) }
+    }
+    iosSimulatorArm64 {
         binaries.framework {
-            baseName = frameworkName
-            if (static) isStatic = true
+            baseName = "Keyring"
+            isStatic = true
             xcf.add(this)
-            binaryOption("bundleId", frameworkBundleId)
+        }
+    }
+    iosX64 {
+        // iOS Simulator targets share an XCFramework "fat" stage that
+        // requires every input framework to be either all static or all
+        // dynamic. iosSimulatorArm64 is already declared static for the
+        // Swift Export SPM bridge, so iosX64 must match.
+        binaries.framework {
+            baseName = "Keyring"
+            isStatic = true
+            xcf.add(this)
         }
     }
 
