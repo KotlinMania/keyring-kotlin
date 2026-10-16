@@ -8,6 +8,11 @@ androidKmp = "9.4.1"
 vanniktech = "0.36.0"
 detekt = "1.23.8"
 ktlint = "14.2.0"
+base64 = "0.1.2"
+clap = "0.1.1"
+log = "0.1.5"
+windowsSys = "0.1.2"
+zeroize = "0.1.0"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -23,6 +28,11 @@ kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "collectionsImmutable" }
+base64-kotlin = { module = "io.github.kotlinmania:base64-kotlin", version.ref = "base64" }
+clap-kotlin = { module = "io.github.kotlinmania:clap-kotlin", version.ref = "clap" }
+log-kotlin = { module = "io.github.kotlinmania:log-kotlin", version.ref = "log" }
+windows-sys-kotlin = { module = "io.github.kotlinmania:windows-sys-kotlin", version.ref = "windowsSys" }
+zeroize-kotlin = { module = "io.github.kotlinmania:zeroize-kotlin", version.ref = "zeroize" }
 
 [bundles]
 keyring-kotlin-commonMain = [
@@ -31,4 +41,10 @@ keyring-kotlin-commonMain = [
   "kotlinx-serialization-json",
   "kotlinx-datetime",
   "collections-immutable",
+  "log-kotlin",
+  "zeroize-kotlin",
+]
+keyring-kotlin-commonTest = [
+  "base64-kotlin",
+  "clap-kotlin",
 ]
