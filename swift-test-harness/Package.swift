@@ -1,8 +1,11 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.0
 import PackageDescription
 
 let package = Package(
     name: "SwiftTestHarness",
+    platforms: [
+        .macOS(.v15),
+    ],
     dependencies: [
         .package(name: "Keyring", path: "../build/SPMPackage/macosArm64/Debug")
     ],
