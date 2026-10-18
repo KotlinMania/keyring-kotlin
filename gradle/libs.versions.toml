@@ -12,7 +12,7 @@ base64 = "0.1.2"
 clap = "0.1.1"
 log = "0.1.5"
 windowsSys = "0.1.2"
-zeroize = "0.1.0"
+zeroize = "0.1.1"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
